@@ -8,7 +8,7 @@ Requer Node.js 20.19+ ou 22.12+.
 
 ```bash
 npm install       # instala as dependências (só na primeira vez)
-npm run dev       # servidor de desenvolvimento em http://localhost:5173
+npm run dev       # servidor de desenvolvimento 
 npm run build     # gera a versão final em dist/
 npm run preview   # serve a pasta dist/ para conferir o build
 ```
