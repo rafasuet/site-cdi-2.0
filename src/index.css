@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* Layout: site do CDI com 5 páginas (Início, Eventos, Professores, Guia, Vida no campus);
+   seções em largura cheia com os trilhos azuis laterais do Figma. */
+
+/* Cores do tema (claro/escuro). As classes do Tailwind (bg-blue, text-fg, border-line…)
+   apontam para estas variáveis, definidas no @theme abaixo. */
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --fg: #060606;
+  --muted: #4a4d63;
+  --blue: #0108f8;
+  --on-blue: #ffffff;
+  --line: #0108f8;
+  --ink-line: #000250;
+  --band: #e4e5ff;
+  --glass: rgba(255, 255, 255, 0.78);
+  --hair: #c9ccfb;
+  --slot: #eef0ff;
+  --slot-fg: #3c43c9;
+  --avatar: #d9d9d9;
+  --foot: #000000;
+  --on-foot: #ffffff;
+  --logo-on-light: block;
+  --logo-on-dark: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0c1a; --surface: #12142a; --fg: #eceefb; --muted: #b5b9d6;
+    --blue: #6f78ff; --on-blue: #ffffff; --line: #4c56ff; --ink-line: #4c56ff; --band: #171a3a;
+    --glass: rgba(11, 12, 26, 0.84); --hair: #2f3466; --slot: #1a1d3a; --slot-fg: #a9afff; --avatar: #2c2f4d;
+    --foot: #05060d; --on-foot: #eceefb; --logo-on-light: none; --logo-on-dark: block;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0c1a; --surface: #12142a; --fg: #eceefb; --muted: #b5b9d6;
+  --blue: #6f78ff; --on-blue: #ffffff; --line: #4c56ff; --ink-line: #4c56ff; --band: #171a3a;
+  --glass: rgba(11, 12, 26, 0.84); --hair: #2f3466; --slot: #1a1d3a; --slot-fg: #a9afff; --avatar: #2c2f4d;
+  --foot: #05060d; --on-foot: #eceefb; --logo-on-light: none; --logo-on-dark: block;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-blue: var(--blue);
+  --color-onblue: var(--on-blue);
+  --color-line: var(--line);
+  --color-inkline: var(--ink-line);
+  --color-band: var(--band);
+  --color-glass: var(--glass);
+  --color-hair: var(--hair);
+  --color-slot: var(--slot);
+  --color-slotfg: var(--slot-fg);
+  --color-avatar: var(--avatar);
+  --color-foot: var(--foot);
+  --color-onfoot: var(--on-foot);
+}
+
+@theme {
+  --font-display: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Montserrat", "Segoe UI", Arial, sans-serif;
+  --container-page: 1440px;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+  body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; }
+  h1, h2, h3 { text-wrap: balance; }
+  button:not(:disabled), [role="button"]:not(:disabled) { cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+}
+
+@layer components {
+  /* Ícones do Material Symbols (o nome do ícone vai como texto). */
+  .ms {
+    font-family: "Material Symbols Outlined"; font-weight: normal; font-style: normal; font-size: 24px; line-height: 1;
+    letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; direction: ltr;
+    -webkit-font-smoothing: antialiased; font-feature-settings: "liga";
+  }
+  .gutter {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .grad-card { background: linear-gradient(180deg, var(--blue) 0%, var(--blue) 45%, var(--band) 100%); }
+  .logo-light { display: var(--logo-on-light); }
+  .logo-dark { display: var(--logo-on-dark); }
+}
